@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-varsion: [18.13.0]
+        node-varsion: [18x]
     steps:
       - uses: actions/checkout@v3
       - name: Staring Node.js ${{ matrix.node-version }}
@@ -16,11 +16,3 @@ jobs:
         run: npm install
       - name: build project
         run: npm run build
-      - name: build storybook
-    #     run: npm run build:storybook
-    #   - name: unit test
-    #     run: npm run test:unit
-    #   - name: e2e test
-    #     run: npm run test:e2e
-    #   - name: lint code
-    #     run: npm run lint
