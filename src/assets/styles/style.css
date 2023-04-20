@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 body{
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -11,9 +12,11 @@ body{
 .todo_container{
     width: 729px;
     height: fit-content;
-    background: #C5C5C5;
+    background: rgba(197, 197, 194, 0.42);
+
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 .todo_title{
@@ -34,6 +37,28 @@ body{
     padding-left: 35px;
     padding-right: 35px; */
     padding: 38px 35px;
+    padding-right: 126px;
+    padding-bottom: 281px;
+
+}
+
+
+.todo_right-img{
+    position: absolute;
+    right: -45px;
+    top: -8px;
+    width: 179px;
+    height: 357px;
+}
+
+.todo_bottom-img{
+    width: 411px;
+    height: 182px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    margin: auto;
 }
 
 .todo_task-container_add-wrap-btn{
@@ -53,7 +78,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 85px;
+    margin-bottom: 45px;
 }
 
 .todo_task-container_add-wrap input{
@@ -62,7 +87,7 @@ body{
     width: 88%;
     font-size: 32px;
     outline:  none;
-    background: #C5C5C5;
+    background: none;
     border: none;
     font-family: 'Inter', sans-serif;
 
@@ -74,6 +99,7 @@ body{
     width: 100%;
     justify-content: space-between;
     margin-bottom: 40px;
+    
 }
 
 .todo_task-container_list-wrap-element:last-child{
@@ -90,6 +116,9 @@ body{
     margin-right: 20px;
     position: relative;
     transition-duration: 0.3s;
+    -webkit-box-shadow: 0px 5px 23px -2px rgba(34, 60, 80, 0.2);
+-moz-box-shadow: 0px 5px 23px -2px rgba(34, 60, 80, 0.2);
+box-shadow: 0px 5px 23px -2px rgba(34, 60, 80, 0.2);
 }
 
 .todo_task-container_list-wrap-element-checkbox input{
@@ -227,4 +256,13 @@ body{
 
 .todo_task-container_list-wrap .todo_task-container_list-wrap-element-completed p::before{
     width: 110%;
+}
+
+.todo_task-container_list-wrap-no-tasks{
+    font-size: 24px;
+    font-weight: 200;
+}
+
+.todo_task-container_list-wrap-no-tasks-off{
+    display: none;
 }

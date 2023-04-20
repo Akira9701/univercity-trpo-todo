@@ -9,16 +9,23 @@ function Tasks(){
     const inputText = document.querySelector('.todo_task-container_add-wrap-input');
     const taskList = document.querySelector('.todo_task-container_list-wrap ul');
     const completedTaskList = document.querySelector('.todo_task-container_completed-list-wrap ul');
+    const [noTaskMes , noTaskCompeletedMes] = document.querySelectorAll('.todo_task-container_list-wrap-no-tasks');
+    
+    // const noTaskMess = document.querySelector('.todo_task-container_list-wrap-no-tasks')[0];
 
 
 
-    function removeTask(item, id){
+    function removeTask(item, id, side){
         item.remove();
         localStorage.removeItem(id);
+        console.log(!side.querySelectorAll('li').length)
+        console.log(side.querySelector('.todo_task-container_list-wrap-no-tasks'))
+        !side.querySelectorAll('li').length && side.querySelector('.todo_task-container_list-wrap-no-tasks').classList.remove('todo_task-container_list-wrap-no-tasks-off') 
 
     }
 
     function addTask(task, side, wrapper){
+        !side.querySelectorAll('li').length && side.querySelector('.todo_task-container_list-wrap-no-tasks').classList.add('todo_task-container_list-wrap-no-tasks-off') 
         wrapper.push(task);
         side.append(taskItemComponent(task, side));
         localStorage.setItem(task.key, JSON.stringify(task));
@@ -28,7 +35,6 @@ function Tasks(){
     const taskItemComponent = (task, side) => {
         
         const taskItem = document.createElement('li');
-        console.log(side.parentElement.classList.contains('todo_task-container_list-wrap'));
         taskItem.classList.add('todo_task-container_list-wrap-element');
         taskItem.classList.add(!side.parentElement.classList.contains('todo_task-container_list-wrap') 
         ? 'todo_task-container_completed-list-wrap-element' : 'o');
@@ -40,7 +46,6 @@ function Tasks(){
         taskImgContainer.classList.add('todo_task-container_list-wrap-element-close-btn');
         const taskImg = document.createElement('img');
         taskImg.src = url.default;
-        console.log(side.parentElement);
         if(side.parentElement.classList.contains('todo_task-container_list-wrap')){
             const taskItemCheckbox = document.createElement('div');
             taskItemCheckbox.classList.add('todo_task-container_list-wrap-element-checkbox');
@@ -56,6 +61,8 @@ function Tasks(){
                     activeTodo =  [...activeTodo.filter(el => el.ley === task.key)]
                     setTimeout(() => {
                         taskItem.remove();
+                        !side.querySelectorAll('li').length && side.querySelector('.todo_task-container_list-wrap-no-tasks').classList.remove('todo_task-container_list-wrap-no-tasks-off') 
+
                         addTask({...task, completed: true}, completedTaskList, completedTodo)
                     }, 1000);             
                 }
@@ -73,7 +80,7 @@ function Tasks(){
         taskItem.append(taskTitle);
         taskItem.append(taskImgContainer);
         taskImgContainer.addEventListener('click', (e) => {
-            removeTask(taskItem, task.key);
+            removeTask(taskItem, task.key, side);
         })
         return taskItem;
     }
@@ -92,10 +99,10 @@ function Tasks(){
         
     })
     function setTasks(){
-        activeTodo.push(...Object.values(localStorage).map(el => JSON.parse(el)).filter(el => el.completed === false ));
-        completedTodo.push(...Object.values(localStorage).map(el => JSON.parse(el)).filter(el => el.completed === true ));
-        activeTodo.map(el => taskList.append(taskItemComponent(el, taskList)));
-        completedTodo.map(el => completedTaskList.append(taskItemComponent(el, completedTaskList)));
+        
+        Object.values(localStorage).map(el => JSON.parse(el)).filter(el => el.completed === false ).map(el => addTask(el, taskList, activeTodo));
+        Object.values(localStorage).map(el => JSON.parse(el)).filter(el => el.completed === true ).map(el => addTask(el, completedTaskList, completedTodo));
+    
 
     }
     setTasks();
