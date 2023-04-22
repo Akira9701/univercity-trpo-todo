@@ -1,5 +1,11 @@
 import {addTask, removeTask} from '../assets/scripts/app';
 
+
+Object.defineProperty(window, "location", {
+    value: new URL("http://example.com"),
+    configurable: true,
+  });
+
 const localStorageMock = {
     getItem: jest.fn(),
     setItem: jest.fn(),
