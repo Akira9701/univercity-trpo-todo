@@ -38,7 +38,7 @@ const taskItemComponent = (task, side) => {
         `
             <p>${task.title}</p>
                 <div class="todo_task-container_list-wrap-element-close-btn">
-                    <img src="/assets/images/close.png">
+                    <img src="./assets/images/close.png">
                 </div>
         ` :
         `
@@ -50,7 +50,7 @@ const taskItemComponent = (task, side) => {
             </div>
             <p>${task.title}</p>
             <div class="todo_task-container_list-wrap-element-close-btn">
-                <img src="/assets/images/close.png">
+                <img src="./assets/images/close.png">
             </div>
         `;
 

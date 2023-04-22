@@ -1,17 +1,17 @@
 import {addTask, removeTask} from '../assets/scripts/app';
 
 
-Object.defineProperty(window, "location", {
-    value: new URL("http://example.com"),
-    configurable: true,
-  });
+// Object.defineProperty(window, "location", {
+//     value: new URL("http://example.com"),
+//     configurable: true,
+//   });
 
-const localStorageMock = {
-    getItem: jest.fn(),
-    setItem: jest.fn(),
-    clear: jest.fn()
-  };
-global.localStorage = localStorageMock;
+// const localStorageMock = {
+//     getItem: jest.fn(),
+//     setItem: jest.fn(),
+//     clear: jest.fn()
+//   };
+// global.localStorage = localStorageMock;
 
 
 
@@ -33,6 +33,7 @@ describe('test making elems', () => {
 
 
     taskItem = localStorage.getItem(task.key);
+
 
     test('create item in ls and check element', () => {
         addTask(task, list);
